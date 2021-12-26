@@ -133,4 +133,4 @@ checkpoints/
 speech_commands/
 wandb/
 treasure_net.pt
-
+.DS_Store

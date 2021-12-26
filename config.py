@@ -20,7 +20,7 @@ def set_params():
         'checkpoint_dir': 'checkpoints/',
         'checkpoint_template': 'checkpoints/treasure_net{}.pt',
         'model_checkpoint': 'treasure_net.pt',
-        'load_model': True,
+        'load_model': False,
 
         # Data processing
         'valid_ratio': 0.2,
@@ -33,19 +33,27 @@ def set_params():
         'ema_alpha': 0.05,
 
         # Augmentation params:
-        'pitch_shift': 2.0, 'noise_scale': 0.005,
-        'gain_db': (-10.0, 30.0), 'audio_scale': 0.15,
+        'pitch_shift': 2.0, 
+        'noise_scale': 0.005,
+        'gain_db': (-10.0, 30.0), 
+        'audio_scale': 0.15,
 
         # Optimizer params:
-        'lr': 1e-3, 'weight_decay': 1e-3,
-        'batch_size': 512, 'num_epochs': 20,
+        'lr': 1e-3, 
+        'weight_decay': 1e-3,
+        'batch_size': 512, 
+        'num_epochs': 20,
         'start_epoch': 1,
 
         # TreasureNet params:
-        'conv_channels': 32, 'kernel_size': (8, 4),
-        'stride': (2, 2), 'gru_hidden': 256,
-        'gru_layers': 2, 'num_heads': 8,
-        'attention_layers': 1, 'dropout': 0.3,
+        'conv_channels': 32, 
+        'kernel_size': (8, 4),
+        'stride': (2, 2), 
+        'gru_hidden': 256,
+        'gru_layers': 2, 
+        'num_heads': 8,
+        'attention_layers': 1, 
+        'dropout': 0.3,
     }
 
     return params

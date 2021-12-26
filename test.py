@@ -1,3 +1,4 @@
+import time
 import torch
 import torchaudio
 import torchvision
@@ -27,11 +28,16 @@ def test():
     # prepare test audio
     waveform, sample_rate = torchaudio.load(params['example_audio'])
     waveform = waveform[:1]
+    print("sample_rate", sample_rate)
+    print("wave size raw", waveform.size())
 
+    # resample
     if sample_rate != params['sample_rate']:
         waveform = waveform.squeeze(0).numpy()
         waveform = librosa.core.resample(waveform, sample_rate, params['sample_rate'])
         waveform = torch.from_numpy(waveform).unsqueeze(0)
+
+    print("wave size resample", waveform.size())
 
     waveform = waveform.to(params['device'])
     spectrogramer = torchvision.transforms.Compose([
@@ -44,7 +50,10 @@ def test():
 
     # calculate keyword probs
     spec = spectrogramer(waveform).transpose(1, 2)
+    print("spec", spec.size())
     num_predicts = spec.shape[1] - params['time_steps']
+    print("time_steps", params['time_steps'])
+    print("num_predict", num_predicts)
     keyword_probs = np.zeros((num_predicts, len(params['keywords'])))
     hidden = None
 
